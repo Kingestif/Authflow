@@ -24,7 +24,8 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 8
+        minlength: 8,
+        select: false
     },
 
     passwordConfirm: {
@@ -34,9 +35,9 @@ const UserSchema = new mongoose.Schema({
         validate: {     //custom validator
             validator: function(el){
                 return el === this.password;
-            }
+            },
+            message: "Password must be the same"
         },
-        message: "Password must be the same"
     },
 
     role: {
@@ -48,11 +49,15 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-UserSchema.pre('save', async function(next){        //kinda middleware run before db saves data
+UserSchema.pre('save', async function(next){        //kinda middleware run before db saves data, RUNS after signup too
     if(!this.isModified('password')) return next();
     this.password = await bcrypt.hash(this.password, 12);
     this.passwordConfirm = undefined;   //not store on our database
 });
+
+UserSchema.methods.checkPassword = function(givenPassword, storedPassword){
+    return bcrypt.compare(givenPassword, storedPassword);
+}
 
 const User = mongoose.model('User', UserSchema);
 
