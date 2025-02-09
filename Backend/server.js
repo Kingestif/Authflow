@@ -20,8 +20,10 @@ app.listen(port, ()=>{
 
 // const testUser = new User({
 //     name: "user2",
-//     email: "yes2@of",
-//     phoneNumber: "12"
+//     email: "yes1@gmail.of",
+//     phoneNumber: "123",
+//     password: "12345678",
+//     passwordConfirm: "123",
 // });
 
 

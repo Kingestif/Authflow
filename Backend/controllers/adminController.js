@@ -2,7 +2,7 @@ const User = require('../models/users');
 
 exports.GetUser = async(req,res)=>{
     try{
-        const userinfo = await User.findById(req.params.id);
+        const userinfo = await User.findById(req.params.id).select('-password -passwordConfirm');
         if(!userinfo){
             return res.status(404).json({
                 status: "error",
@@ -31,7 +31,7 @@ exports.GetUser = async(req,res)=>{
 
 exports.GetAllUser = async(req,res)=>{
     try{
-        const alluser = await User.find();
+        const alluser = await User.find().select('-password -passwordConfirm');
         res.status(200).json({
             status: "success",
             message: "Users fetched successfully",
@@ -53,7 +53,7 @@ exports.UpdateUser = async(req,res)=>{
         const updateUser = await User.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
-        });
+        }).select('-password -passwordConfirm');
         
 
         res.status(200).json({
