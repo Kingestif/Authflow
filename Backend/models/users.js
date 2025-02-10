@@ -44,12 +44,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         enum: ['user', 'admin'],
         default: 'user'
-
     }
 
 });
 
-UserSchema.pre('save', async function(next){        //kinda middleware run before db saves data, RUNS after signup too
+UserSchema.pre('save', async function(next){        // run before db saves data, RUNS after signup too
     if(!this.isModified('password')) return next();
     this.password = await bcrypt.hash(this.password, 12);
     this.passwordConfirm = undefined;   //not store on our database

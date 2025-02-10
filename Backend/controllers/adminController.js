@@ -6,9 +6,7 @@ exports.GetUser = async(req,res)=>{
         if(!userinfo){
             return res.status(404).json({
                 status: "error",
-                data: {
-                    Message: "User not found"
-                },
+                Message: "User not found"
             });
         }
 
@@ -49,8 +47,8 @@ exports.GetAllUser = async(req,res)=>{
 
 exports.UpdateUser = async(req,res)=>{
     try{
-        console.log("hellow estif", req.body);
-        const updateUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+        const {role, ...updateData} = req.body;
+        const updateUser = await User.findByIdAndUpdate(req.params.id, updateData, {
             new: true,
             runValidators: true
         });
@@ -79,9 +77,6 @@ exports.DeleteUser = async(req,res)=>{
         res.status(204).json({
             status: "success",
             message: "User deleted successfully",
-            data: {
-                user: "Deleted User"
-            },
         });
     }catch(error){
         return res.status(500).json({
@@ -98,37 +93,37 @@ exports.GetAdminInfo = (req,res)=>{
             status: "success",
             message: "Admin information fetched successfully",
             data: {
-                
+                user: req.user
             },
         });
     }catch(error){
         return res.status(400).json({
             status: "error",
             message: "Failed to fetch admin info",
-            data: {
-
-            },
         });
     }
 };
 
 
-exports.UpdateAdminInfo = (req,res)=>{
+exports.UpdateAdminInfo = async(req,res)=>{
     try{
+        const {role, ...updateData} = req.body;
+        const updateUser = await User.findByIdAndUpdate(req.user._id, updateData, {
+            new: true,
+            runValidators: true
+        });
+
         res.status(200).json({
             status: "success",
             message: "Admin information updated successfully",
             data: {
-                
+                user: updateUser
             },
         });
     }catch(error){
         return res.status(400).json({
             status: "error",
             message: "Failed to update admin",
-            data: {
-
-            },
         });
     }
 };
