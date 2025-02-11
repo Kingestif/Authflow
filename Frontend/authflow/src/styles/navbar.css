@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.header{
+    display: flex;
+    height: 8%;
+    justify-content:space-between;
+    align-items:center;
+    background-color:#1F2937;
+}
+
+.headerLogo{
+    font-size: 1.3em;
+    font-weight:bold;
+    color: white;
+    margin-left: 20px;
+}
+
+.lastones{
+    display:flex;
+    gap: 5em;
+    color: white;
+    margin-right:20px;
+}
+
+a{
+    color: unset;       
+    text-decoration: none;
+}
+
+.logout{
+    color:red;
+}
+
+
