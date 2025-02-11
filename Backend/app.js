@@ -3,6 +3,10 @@ const app = express();
 const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes');
 const adminRouter = require('./routes/adminRoutes');
+const cors = require('cors');
+
+
+app.use(cors());
 
 app.use(morgan('dev'));
 
