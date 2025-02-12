@@ -16,7 +16,7 @@ export function SignInForm(){
         e.preventDefault();
 
         try{
-            const response = await fetch("http://localhost:3000/api/v1/users/login", {
+            const response = await fetch("https://authflow-backend-l73i.onrender.com/api/v1/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({email, password}),
@@ -34,7 +34,7 @@ export function SignInForm(){
             if(!data.token) return null;
 
             //get the role from the token
-            const getUser = await fetch("http://localhost:3000/api/v1/users", {
+            const getUser = await fetch("https://authflow-backend-l73i.onrender.com/api/v1/users", {
                 method: "GET",
                 headers: {"authorization" : `Bearer ${data.token}`}
             });

@@ -15,7 +15,7 @@ export function UserDashboard(){
             const token = localStorage.getItem("token");
             if(!token) return null;
             
-            const response = await fetch(`http://localhost:3000/api/v1/users`, {
+            const response = await fetch(`https://authflow-backend-l73i.onrender.com/api/v1/users`, {
                 method: "GET",
                 headers: {"authorization" : `Bearer ${token}`},
             });
@@ -46,7 +46,7 @@ export function UserDashboard(){
             const decoded = jwtDecode(token); 
             const id = decoded._id; 
 
-            const response = await fetch(`http://localhost:3000/api/v1/users`, {
+            const response = await fetch(`https://authflow-backend-l73i.onrender.com/api/v1/users`, {
                 method: "PATCH",
                 headers: {
                     "Authorization": `Bearer ${token}`,

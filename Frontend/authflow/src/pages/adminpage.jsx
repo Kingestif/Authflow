@@ -13,7 +13,7 @@ export function AdminDashboard(){
             const token = localStorage.getItem("token");
             if(!token) return null;
             
-            const response = await fetch("http://localhost:3000/api/v1/admin/users", {
+            const response = await fetch("https://authflow-backend-l73i.onrender.com/api/v1/admin/users", {
                 method: "GET",
                 headers: {"authorization" : `Bearer ${token}`}
             });
