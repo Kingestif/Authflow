@@ -63,6 +63,10 @@ export function SignInForm(){
         }
     }
 
+    const handleSignup = async() =>{
+        navigate('/signup');
+    }
+
     return(
         <div className = "signin-container">
             <div className="signin-text">Sign in to your account</div>
@@ -77,7 +81,7 @@ export function SignInForm(){
                 <input type="submit" value="Sign in" className="submit"/>
             </form>
 
-            <div className="hvaccount">Don't have an account? <a href="/signup">Sign Up</a></div>
+            <div className="hvaccount">Don't have an account? <a href= "" onClick={handleSignup}>Sign Up</a></div>
 
         </div>
     ) 
