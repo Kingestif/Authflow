@@ -2,9 +2,11 @@ import '../styles/signin.css';
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
+import { useRole } from '../RoleContext';
 
 export function SignInForm(){
     const navigate = useNavigate();
+    const { setRole } = useRole();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -44,6 +46,7 @@ export function SignInForm(){
             }
 
             const role = getData.data.user.role;
+            setRole(role);
 
             if(role === 'user'){
                 navigate('/userdashboard');
