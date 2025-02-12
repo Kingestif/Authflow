@@ -1,6 +1,8 @@
 import '../styles/signup.css';
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 export function SignUpForm(){
     const navigate = useNavigate();
@@ -38,10 +40,6 @@ export function SignUpForm(){
         }
     }
 
-    const handleSignIn = async() =>{
-        navigate('/');
-    }
-
     return(
         <div className = "signup-container">
             <div className="signup-text">Sign up to your account</div>
@@ -62,7 +60,7 @@ export function SignUpForm(){
                 <input type="submit" value="Sign Up" className="submit" />
             </form>
 
-            <div className="hvaccount">Already have an account? <a href="" onClick={handleSignIn}>Sign In</a></div>
+            <div className="hvaccount">Already have an account? <Link to="/">Sign In</Link></div>
 
         </div>
     ) 

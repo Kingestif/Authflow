@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import { useRole } from '../RoleContext';
+import { Link } from 'react-router-dom';
 
 export function SignInForm(){
     const navigate = useNavigate();
@@ -63,10 +64,6 @@ export function SignInForm(){
         }
     }
 
-    const handleSignup = async() =>{
-        navigate('/signup');
-    }
-
     return(
         <div className = "signin-container">
             <div className="signin-text">Sign in to your account</div>
@@ -81,7 +78,7 @@ export function SignInForm(){
                 <input type="submit" value="Sign in" className="submit"/>
             </form>
 
-            <div className="hvaccount">Don't have an account? <a href= "" onClick={handleSignup}>Sign Up</a></div>
+            <div className="hvaccount">Don't have an account? <Link to="/signup">Sign Up</Link></div>
 
         </div>
     ) 
