@@ -18,7 +18,7 @@ exports.signup = async(req,res,next)=>{
             expiresIn: process.env.JWT_EXPIRE
         });
 
-        res.status(200).json({
+        res.status(201).json({
             status: "success",
             message: "User Created successfully",
             token: token,
@@ -40,7 +40,7 @@ exports.login = async(req,res,next) =>{
         const {email,password} = req.body;
 
         if(!email || !password){
-            return res.status(400).json({
+            return res.status(401).json({
                 status: "error",
                 message:"Please Provide email and password",
             });
@@ -49,7 +49,7 @@ exports.login = async(req,res,next) =>{
         const user = await User.findOne({email}).select('+password');
 
         if(!user || !await user.checkPassword(password, user.password)){
-            return res.status(400).json({
+            return res.status(401).json({
                 status: "error",
                 message:"Incorrect email or password",
             });
@@ -65,7 +65,7 @@ exports.login = async(req,res,next) =>{
         });
 
     }catch(error){
-        return res.status(400).json({
+        return res.status(401).json({
             status: "error",
             message:error.message || "Error trying to log in"
         });
